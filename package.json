@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "A simple http & https request module",
   "main": "war-http.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wubocong/war-http/"
+  },
   "scripts": {
     "build": "rm -rf lib && babel src --out-dir lib --ignore __tests__",
     "debug": "./node_modules/.bin/mocha --require babel-core/register --require babel-polyfill --no-timeouts",
