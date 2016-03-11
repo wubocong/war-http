@@ -1,12 +1,13 @@
 {
   "name": "war-http",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "A simple http & https request module",
-  "main": "war-http.js",
+  "main": "./lib/war-http.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/wubocong/war-http/"
   },
+  "homepage": "https://github.com/wubocong/war-http/",
   "scripts": {
     "build": "rm -rf lib && babel src --out-dir lib --ignore __tests__",
     "debug": "./node_modules/.bin/mocha --require babel-core/register --require babel-polyfill --no-timeouts",
