@@ -18,7 +18,7 @@ npm install --save war-http
 
 ```javascript
 var request=require('war-http');
-request(url,method,function(res){});
+request(url,method,function(head,body){});
 ```
 
 ## Example
@@ -26,8 +26,8 @@ request(url,method,function(res){});
 ```javascript
 //test.js
 var request=require('war-http');
-request('https://www.baidu.com','GET',function(res){
-	console.log(res);
+request('https://www.baidu.com','GET',function(head,body){
+	console.log(body);
 });
 ```
 
