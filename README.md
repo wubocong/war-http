@@ -9,3 +9,30 @@ Yet another simple HTTP/HTTPS request module of Node.js
 ## Author
 
 [Warrior!](https://wubocong.com)
+
+## Usage
+
+```bash
+npm install --save war-http
+```
+
+```javascript
+var request=require('war-http');
+request(url,method,function(res){});
+```
+
+## Example
+
+```javascript
+//test.js
+var request=require('war-http');
+request('https://www.baidu.com','GET',function(res){
+	console.log(res);
+});
+```
+
+then
+
+```bash
+node test
+```
