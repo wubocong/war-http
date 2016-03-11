@@ -12,10 +12,20 @@ function request(address, method, callback) {
   }
   const options = url.parse(address);
   options.method = method;
+
+  function operate(res) {
+    let body = '';
+    res.on('data', function(chunk) {
+      body += chunk;
+    });
+    res.on('end', function() {
+      callback(res, body);
+    });
+  }
   if (address.search(/https:\/\//) === 0) {
-    https.request(options, callback).end();
+    https.request(options, operate).end();
   } else {
-    http.request(options, callback).end();
+    http.request(options, operate).end();
   }
 }
 export default request;
