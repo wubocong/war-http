@@ -4,7 +4,7 @@
 [![NPM downloads](http://img.shields.io/npm/dm/war-http.svg?style=flat)](https://npmjs.org/package/war-http)
 # war-http
 
-Yet another simple HTTP/HTTPS request module of Node.js
+Yet another simple HTTP/HTTPS request module of Node.js.Support GET,POST,PUT.
 
 ## Author
 
@@ -25,7 +25,7 @@ request(url,options,function(head,body){},postData);
 
 ```javascript
 //test.js
-var request=require('war-http');
+var request = require('war-http');
 var options = {
   method: 'POST',
   headers: {
@@ -40,7 +40,7 @@ var data = {
 };
 request('https://www.baidu.com',options,function(head,body){
 	console.log(body);
-});
+}, data);
 ```
 
 then
