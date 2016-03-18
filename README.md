@@ -18,7 +18,7 @@ npm install --save war-http
 
 ```javascript
 var request=require('war-http');
-request(url,method,function(head,body){});
+request(url,options,function(head,body){},postData);
 ```
 
 ## Example
@@ -26,7 +26,19 @@ request(url,method,function(head,body){});
 ```javascript
 //test.js
 var request=require('war-http');
-request('https://www.baidu.com','GET',function(head,body){
+var options = {
+  method: 'POST',
+  headers: {
+    'User-Agent': '',
+    'Referer': 'https://www.taobao.com',
+    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    'X-Requested-With': 'XMLHttpRequest'
+  }
+};
+var data = {
+  'foo': 'bar'
+};
+request('https://www.baidu.com',options,function(head,body){
 	console.log(body);
 });
 ```

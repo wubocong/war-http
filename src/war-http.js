@@ -1,8 +1,11 @@
+'use strict';
 import http from 'http';
 import url from 'url';
 import https from 'https';
+import querystring from 'querystring';
 
-function request(address, method, callback) {
+function request(address, option, callback, data = {}) {
+  let postData = querystring.stringify(data);
   let uri = address;
   if (address.search(/\/\//) === 0) {
     uri = 'http:' + uri;
@@ -10,8 +13,10 @@ function request(address, method, callback) {
   if (address.search(/https?:\/\//) !== 0) {
     uri = 'http://' + uri;
   }
-  const options = url.parse(address);
-  options.method = method;
+  option.headers['Content-Length'] = postData.length;
+  const options = {...url.parse(address),
+    ...option
+  };
 
   function operate(res) {
     let body = '';
@@ -22,10 +27,16 @@ function request(address, method, callback) {
       callback(res, body);
     });
   }
+  let protocol;
   if (address.search(/https:\/\//) === 0) {
-    https.request(options, operate).end();
+    protocol = https;
   } else {
-    http.request(options, operate).end();
+    protocol = http;
   }
+  const req = protocol.request(options, operate);
+  if (options.method.search(/(POST|PUT)/i) >= 0) {
+    req.write(postData);
+  }
+  req.end();
 }
 export default request;
